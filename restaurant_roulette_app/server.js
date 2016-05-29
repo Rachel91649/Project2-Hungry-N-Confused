@@ -11,6 +11,14 @@ var express = require("express"),
 	cookieParser = require('cookie-parser');
 	port = process.env.PORT || 3000;
 
+var Yelp = require('yelp');
+var yelp = new Yelp({//Yelp is a function and I passed the keys as an argument through Yelp
+	consumer_key: 'YELP_CONSUMER_KEY',
+	consumer_secret: 'YELP_CONSUMER_SECRET_KEY',
+	token: 'YELP_TOKEN',
+	token_secret: 'YELP_TOKEN_SECRET'
+});
+console.log(">>>>>>>", yelp);
 
 // ==============================
 // Middleware
@@ -49,3 +57,5 @@ app.listen(port);
 console.log("=============================");
 console.log("Server is up and running on Andre" + port);
 console.log("=============================");
+
+
