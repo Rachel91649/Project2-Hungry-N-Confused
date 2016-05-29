@@ -12,10 +12,10 @@ var Users = require('../models/users.js');
 
 //Get Index page
 //====================================
-router.get('/', function(req, res) {
-	console.log("===>We've got to the root page<===");
-	res.render('index.ejs');
-});
+// router.get('/', function(req, res) {
+// 	console.log("===>We've got to the root page<===");
+// 	res.render('index.ejs');
+// });
 
 //Get Create-User Page
 //====================================
@@ -33,9 +33,20 @@ router.get('/homepage', function(req, res) {
 	});
 });
 
-//Get Restaurant
-//====================================
-router.get('/')
+//Get Restaurant - This is my 1st API Request
+//========================================
+router.get('/', function(req, res) {
+	var results;
+	request('https://api.yelp.com/v2/search?term=food&location=San+Francisco', function(err, response, body) {
+		if(!err && response.statusCode == 200) {
+			console.log("Yelp API Data Below======>");
+			console.log(body);
+			results = body;
+		}
+	});
+	console.log("My results are poppin======>", results);
+	res.json(results);
+})
 //Get Restaurant Show page
 //==============================
 // router.get('/show', function(req, res) {
