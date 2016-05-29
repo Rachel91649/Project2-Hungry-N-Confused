@@ -1,0 +1,23 @@
+{
+  "name": "restaurant_roulette_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Rachel Jackson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.4.19",
+    "morgan": "^1.7.0",
+    "request": "^2.72.0",
+    "yelp": "^1.0.1"
+  }
+}
