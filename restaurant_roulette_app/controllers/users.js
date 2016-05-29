@@ -8,13 +8,13 @@ var cookieParser = require('cookie-parser');
 var Users = require('../models/users.js');
 
 
-//index page
-//===================================
+
+
+//Get Index page
+//====================================
 router.get('/', function(req, res) {
-	console.log("=======>index router is working<=====");
-	Users.find({}, function(err, users) {
-		res.render('index.ejs', {users})
-	});
+	console.log("===>We've got to the root page<===");
+	res.render('index.ejs');
 });
 
 //Get Create-User Page
@@ -24,6 +24,22 @@ router.get('/newuser', function(req, res) {
 	res.render('createuser.ejs');
 });
 
+//Get User Home Screen page
+//===================================
+router.get('/homepage', function(req, res) {
+	console.log("=======>user homepage is working<=====");
+	Users.find({}, function(err, users) {
+		res.render('homescreen.ejs', {users})
+	});
+});
 
+//Get Restaurant
+//====================================
+router.get('/')
+//Get Restaurant Show page
+//==============================
+// router.get('/show', function(req, res) {
+// 	res.
+// })
 
 module.exports = router;

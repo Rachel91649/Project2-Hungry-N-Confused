@@ -37,7 +37,7 @@ mongoose.connect(db);
 // Controllers
 // ==============================
 var usersController = require('./controllers/users.js');
-app.use('/rroulette', usersController);
+app.use('/restaurantroulette', usersController);
 
 // var seedController = require('./controllers/seeds.js');
 // app.use('/seed', seedController);
