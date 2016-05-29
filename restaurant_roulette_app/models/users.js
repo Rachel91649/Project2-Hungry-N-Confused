@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 // =====================
 var userSchema = new mongoose.Schema({
 	name: String, 
-	myPlaces: Object
+	myPlaces: Array, 
 });
 
 // ========================

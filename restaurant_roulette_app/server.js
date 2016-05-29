@@ -8,6 +8,7 @@ var express = require("express"),
 	methodOverride = require("method-override"),
 	mongoose = require("mongoose"),
 	morgan = require("morgan"),
+	cookieParser = require('cookie-parser');
 	port = process.env.PORT || 3000;
 
 
@@ -38,7 +39,7 @@ mongoose.connect(db);
 var usersController = require('./controllers/users.js');
 app.use('/rroulette', usersController);
 
-// var seedController = require('./controllers/inventory_seed.js');
+// var seedController = require('./controllers/seeds.js');
 // app.use('/seed', seedController);
 
 // ==============================
