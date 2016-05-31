@@ -76,7 +76,7 @@ router.post('/', function(req, res){
 			console.log(err);
 		} else {
 			console.log("======>Posting New User<=======");
-			res.render('show.ejs');
+			res.redirect('/restaurantroulette/show');
 		}
 		// res.render('/search.ejs');
 	})
