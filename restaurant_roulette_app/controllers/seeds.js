@@ -10,18 +10,19 @@ var Users = require('../models/users.js');
 // router.get('/', function(req, res) {
 // 	console.log("==> my root gets it?<==");
 // 	Users.find({}, function(err, products) {
-// 		res.json(Users);
-// 	})
+// 	res.json(Users);
+// 	});
 // });
 
 // router.get('/newseeds', function(req, res) {
 // 	console.log("===>The seeds have arrived<===");
-// 	var newUsers = [
-// 		{
-// 			name: "Joe", 
-// 			myPlaces: []
-// 		}
-// 	];
+// 	var newUsers = {
+// 	userName: "Anna", 
+// 	restaurant: "", 
+// 	location: "",
+// 	zipcode: ""
+// 	};
+
 
 // 	Users.create(newUsers, function() {
 // 		console.log("==>Seeds Planted<==");

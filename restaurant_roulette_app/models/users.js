@@ -7,8 +7,10 @@ var mongoose = require('mongoose');
 // Schemas
 // =====================
 var userSchema = new mongoose.Schema({
-	name: String, 
-	restaurant: String, 
+	userName: String, 
+	restaurantName: String, 
+	location: String,
+	zipcode: Number
 });
 
 // ========================
