@@ -4,10 +4,12 @@
 	<title>home</title>
 </head>
 <body>
-<h1>search by zip code and radius</h1>
-	<form action="/search/" method="get">
-		ZipCode: <br>
-		<input type="text" name="zipcode" value="" placeholder="Zipcode">
+<h1>search by zip code</h1>
+	<form action="/restaurantroulette/search" method="POST">
+	  <br>
+		<input type="text" name="zipcode" placeholder="Zipcode">
+		<br>
+		<input type="text" name="distance" placeholder="Distance (meters)">
 		<br>
 		<input type="submit" value="submit">
 	</form>

@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+    
 </head>
-<body>
+<header>
+    
+</header>
+<body id="show"> 
 <h1>Results page</h1>
 
+	<h2><%= data.businesses[0].name %> </h2>
+	<p><%= data.businesses[0].location.display_address %></p>
+	<p><%= data.businesses[0].location.city %></p>
+	<p><%= data.businesses[0].location.postal_code %></p>
+	
+<a href="/restaurantroulette/search"> Search Again</a> 
+<form action="/restaurantroulette/search/results/updateuser" method="POST">
+		<input type="submit" value="Save This Restaurant">
+</form>  
 </body>
 </html>

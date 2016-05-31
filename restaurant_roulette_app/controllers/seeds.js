@@ -22,6 +22,15 @@ var Users = require('../models/users.js');
 // 	location: "",
 // 	zipcode: ""
 // 	};
+// router.get('/newseeds', function(req, res) {
+// 	console.log("===> The seeds are coming<=====");
+// 	var newUsers = {
+// 		userName: "Jacob", 
+// 		label: "home" {
+// 			zipcode: 10013
+// 		};
+// 	}
+// });
 
 
 // 	Users.create(newUsers, function() {

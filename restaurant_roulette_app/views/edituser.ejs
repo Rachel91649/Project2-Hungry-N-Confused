@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<header>
+ 
+</header>
+<body>
+    <h3>Edit</h3>
+    <a href="/monstore"><p>Back to Products<p></a>
+    <form action="/monstore/<%=products.id%>" method="POST" edit="editformid">
+        <input type="text" name="name" value="<%= products.name %>" placeholder="name">
+        <br>
+        <textarea form="editformid" name="image"><%= products.image %> </textarea>
+        <br>
+        <input type="text" name="region" value="<%= products.region %>" placeholder="region">
+        <br>
+        <input type="text" name="birth_date" value="<%= products.birth_date %>" placeholder="birth date">
+        <br>
+        <input type="text" name="description" value="<%= products.description %>" placeholder="description">
+        <br>
+        <input type="text" name="price" value="<%= products.price %>" placeholder="price">
+        <br>
+        <input type="text" name="quantity" value="<%= products.quantity %>" placeholder="quantity">
+        <input type="hidden" name="_method" value="PUT"/>
+        <br>
+        <button>Submit</button>
+        <a href="/restaurantroulette/search"> Back to Search</a> 
+    </form>
+</body>
+</html>
