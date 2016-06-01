@@ -7,8 +7,8 @@ var mongoose = require('mongoose');
 // Schemas
 // =====================
 var userSchema = new mongoose.Schema({
-	userName: String, 
-	restaurantName: String, 
+	username: String, 
+	restaurantname: String, 
 	location: String,
 	zipcode: Number
 });

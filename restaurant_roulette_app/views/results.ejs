@@ -14,9 +14,12 @@
 	<p><%= data.businesses[0].location.city %></p>
 	<p><%= data.businesses[0].location.postal_code %></p>
 	
-<a href="/restaurantroulette/search"> Search Again</a> 
-<form action="/restaurantroulette/search/results/updateuser" method="POST">
-		<input type="submit" value="Save This Restaurant">
-</form>  
+<a href="/users/search"> Search Again</a> 
+<form action="/users/<%= users.id %>/restaurantupdate" method="POST" edit="editformid">
+        <input type="text" name="restaurantname" value="<%= data.businesses[0].name %>">
+        <input type="hidden" name="_method" value="PUT"/>
+        <br>
+        <button>Save This Restaurant</button>
+    </form>
 </body>
 </html>

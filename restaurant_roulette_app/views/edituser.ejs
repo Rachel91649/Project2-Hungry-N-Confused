@@ -8,15 +8,14 @@
 </header>
 <body>
     <h2>Edit</h2>
-    <a href="/restaurantroulette/search">Back to Search</a>
-    <form action="/restaurantroulette/<%=Users.id%>" method="POST" edit="editformid">
-        <input type="text" name="name" value="<%= Users.userName %>" placeholder="name">
+    <a href="/users/<%=users.id%>/search">Back to Search</a>
+    <form action="/users/<%= users.id %>" method="POST" edit="editformid">
+        <input type="text" name="username" value="<%= users.username %>" placeholder="name">
         <br>
-        <input type="text" name="zipcode" value="<%= Users.zipcode %>" placeholder="zipcode">
+        <input type="text" name="zipcode" value="<%= users.zipcode %>" placeholder="zipcode">
         <input type="hidden" name="_method" value="PUT"/>
         <br>
         <button>Submit</button>
-        <a href="/restaurantroulette/search"> Back to Search</a> 
     </form>
 </body>
 </html>

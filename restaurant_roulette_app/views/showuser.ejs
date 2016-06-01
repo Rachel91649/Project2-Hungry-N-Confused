@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
- <% include ../views/partials/head.ejs %>
 </head>
-<header>
- <% include ../views/partials/header.ejs %>  
+<header> 
 </header>
 <body id="show"> 
 
     <div id="users-container">
     	<div>
-        <h2> <%= Users.userName %> </h2>
-        <p> <%= Users.zipcode %> </p>      
+    	<p> <%= users.username %></p>
+    	<p> <%= users.zipcode %></p>
+    	<%if(users.restaurantname) {%>
+    		<p> <%= users.restaurantname %></p>
+
+    	<%}%>
+          
       </div>
     </div>
-    <a href="/restaurantroulette/search">Back to Search</a> 
-    <a href="/restaurantroulette/edituser"> Edit User</a>
-    <form>
-  		<button>Delete User</button>
-    </form>
+    <a href="/users/<%=users.id%>/search"> Search</a> 
+    <a href="/users/<%= users.id %>/edit">Edit User</a>
+            <form action="/users/<%= users.id %>" method="POST">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button>Delete User</button>
+            </form> 
+    
 </body>
 </html>

@@ -8,9 +8,9 @@
 </header>
 <body>
 <h1>search by zip code</h1>
-	<form action="/restaurantroulette/search" method="POST">
+	<form action="/users/<%=users.id%>/search" method="POST">
 	  <br>
-		<input type="text" name="zipcode" placeholder="Zipcode">
+		<input type="text" value="<%=users.zipcode%>" name="zipcode" placeholder="<%=users.zipcode%>"
 		<br>
 		<input type="text" name="distance" placeholder="Distance (meters)">
 		<br>

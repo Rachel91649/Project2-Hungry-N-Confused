@@ -16,69 +16,58 @@ var yelp = new Yelp({//Yelp is a function and I passed the keys as an argument t
 	token_secret: process.env.YELP_TOKEN_SECRET
 });
 
-
-//Root page
+//Index - Root page
 router.get('/', function(req, res) {
+	console.log("========Index Router is working=======");
 	res.render('index.ejs');
 });
 
 // Get new user page
-router.get('/newuser', function(req, res) {
-	res.render('createuser.ejs');
-});
+// router.get('/newuser', function(req, res) {
+// 	res.render('createuser.ejs');
+// });
 
 //Get Search Page
-router.get('/search', function(req, res) {
-	res.render('search.ejs');
+router.get('/:id/search', function(req, res) {
+	console.log(req.params.id);
+	Users.findById(req.params.id).then(function(users) {
+		res.render('search.ejs', {users});
+	})
+	// var id = req.params.id;
+	// var user = Users.findById(id);
+	// console.log(user);
+	// console.log(users);
+	// console.log("=======search router is working=======");
+	// res.render('search.ejs', {users});
 });
 
 //get results Page
 router.get('/results', function(req, res) {
+	console.log("========results router is working=========");
 	res.render('results.ejs');
 });
 
 //Get Create-User Page
 //====================================
-router.get('/newuser', function(req, res) {
+router.get('/new', function(req, res) {
 	console.log("=======>Newbie On The Way<======");
 	res.render('createuser.ejs');
 });
 
-//Get User Home Screen page
-//===================================
-router.get('/show', function(req, res) {
-	console.log("=======>user show page is working<=====");
-	res.render('showuser.ejs', {Users});
-});
-
-//Post search and display on results page
-router.post('/search', function(req, res) { 
-	console.log(req.body);
-	var zipcode = req.body.zipcode;
-	var distance = req.body.distance;
-	yelp.search({term: 'food', location:  zipcode, radius_filter: distance}, function(error, data, body) {
-		console.log('===========>Yelp Data Comes Back as an: ', typeof data);
-	  var data = data;
-		
-		res.render('results.ejs', {data: data});
-	});
-});
-
-
 // =======Post and Put Routes =========//
-// Post new user if cookies exist I want to redirect straigh to the search page
+// Post new user
 router.post('/', function(req, res){
 	//grab user data from forms
-	console.log(req.body);
+	//console.log(req.body);
 	var user = new Users(req.body);
 	user.save(function(err) {
 		if(err) {
 			console.log(err);
 		} else {
 			console.log("======>Posting New User<=======");
-			res.redirect('/restaurantroulette/show');
+			res.redirect('/users/'+ user._id);
 		}
-		// res.render('/search.ejs');
+		//res.render('show.ejs');
 	})
 	// var userData = req.body;
 	// //grab new User object with req.body data
@@ -89,6 +78,100 @@ router.post('/', function(req, res){
 	//   res.redirect('/searchterms/');
  // 	});
 });
+
+
+//Show user on show page
+//===================================
+router.get('/:id', function(req, res) {
+	// console.log("=======>user show page is working<=====");
+	// console.log("=======> this is users: ", Users);
+	Users.findById(req.params.id).then(function(users) {
+		res.render('showuser.ejs', {users});
+	})
+	//res.render('showuser.ejs', {Users});
+});
+
+//Get Edit User Page
+//=================================
+router.get('/:id/edit', function(req, res) {
+	console.log("==========making some changes=========");
+	Users.findById(req.params.id, function(err, users) {
+		res.render('edituser.ejs', {users});
+	});
+});
+
+// Update an edit
+//=========================
+router.put('/:id', function(req, res) {
+	console.log(req.body);
+	console.log(req.params.id);
+	console.log("===>Updating My Edits<===");
+	var query = {"_id": req.params.id};
+	console.log("====== this is query: " + query);
+	Users.findOneAndUpdate(query, req.body, function(err, users){
+		if(err){
+			throw err;
+		} else {
+			res.redirect('/users/' + req.params.id);
+		}
+	});
+});
+//Post search and display on results page
+router.post('/:id/search', function(req, res) { 
+	console.log(req.body);
+	var zipcode = req.body.zipcode;
+	var distance = req.body.distance;
+	var user;
+	Users.findById(req.params.id, function(err, users) {
+		user = users;
+		console.log(user);
+		yelp.search({term: 'food', location:  zipcode, radius_filter: distance}, 
+		function(error, data, body) {
+		// console.log('===========>Yelp Data Comes Back as an: ', typeof data);
+	  // var data = data;
+	  console.log(data);
+	  console.log(body);		
+		res.render('results.ejs', {data: data, users: user});
+	});
+	});
+	// yelp.search({term: 'food', location:  zipcode, radius_filter: distance}, 
+	// 	function(error, data, body) {
+	// 	// console.log('===========>Yelp Data Comes Back as an: ', typeof data);
+	//   // var data = data;
+	//   console.log(data);
+	//   console.log(body);		
+	// 	res.render('results.ejs', {data: data});
+	// });
+});
+
+router.put('/:id/restaurantupdate', function(req, res){
+	console.log(req.body.restaurantname);
+	var query = {"_id": req.params.id};
+	Users.findOneAndUpdate(query, req.body, function(err, users){
+		if(err){
+			throw err;
+		} else {
+			res.redirect('/users/' + req.params.id);
+		}
+	});
+});
+
+// ======================
+// Delete
+// ======================
+router.delete('/:id', function(req, res) {
+	console.log("===>Deleting<===")
+	var query = req.params.id;
+	Users.findByIdAndRemove(query, function(err, products) {
+		if(err) {
+			console.log("you broke it!!");
+		} else {
+			res.redirect('/users');
+		}
+	});
+});
+
+
 
 module.exports = router;
 
